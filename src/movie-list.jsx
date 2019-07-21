@@ -16,34 +16,38 @@ const Movie = ({
   Distributor,
   Director,
 }) => {
-  return (
-    <Card>
-      <CardContent>
-        <Typography color="textSecondary" gutterBottom>
-          {Title}
-        </Typography>
-        <Typography variant="h5" component="h2" />
-        <Typography color="textSecondary">{Production_Budget}</Typography>
-        <Typography variant="body2" component="p">
-          {Release_Date} {Distributor} {Director}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Grid container direction="row" justify="center" alignItems="center">
-          <Button variant="contained" size="small" color="primary">
-            Learn More
-          </Button>
-        </Grid>
-      </CardActions>
-    </Card>
-  );
+  if (Title) {
+    return (
+      <Card>
+        <CardContent>
+          <Typography color="textSecondary" gutterBottom>
+            {Title}
+          </Typography>
+          <Typography variant="h5" component="h2" />
+          <Typography color="textSecondary">{Production_Budget}</Typography>
+          <Typography variant="body2" component="p">
+            {Release_Date} {Distributor} {Director}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Grid container direction="row" justify="center" alignItems="center">
+            <Button variant="contained" size="small" color="primary">
+              Learn More
+            </Button>
+          </Grid>
+        </CardActions>
+      </Card>
+    );
+  }
+
+  return null;
 };
 
 const Row = ({ index, style, data }) => {
   const movie = data[index];
   return (
     <div style={style} key={index}>
-      <Movie key={index} {...movie} />;
+      <Movie key={index} {...movie} />
     </div>
   );
 };
