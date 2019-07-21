@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { FixedSizeList as List } from 'react-window';
-import { AutoSizer } from 'react-virtualized';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 const Movie = ({
   Title,
