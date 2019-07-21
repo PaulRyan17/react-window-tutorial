@@ -6,6 +6,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import { FixedSizeList as List } from 'react-window';
+import { AutoSizer } from 'react-virtualized';
 
 const Movie = ({
   Title,
@@ -37,6 +39,15 @@ const Movie = ({
   );
 };
 
+const Row = ({ index, style, data }) => {
+  const movie = data[index];
+  return (
+    <div style={style} key={index}>
+      <Movie key={index} {...movie} />;
+    </div>
+  );
+};
+
 export const MovieList = () => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
@@ -47,7 +58,22 @@ export const MovieList = () => {
 
   const moviesList = movies.slice(0, 5000);
 
-  return moviesList.map((movie, index) => {
-    return <Movie key={index} {...movie} />;
-  });
+  return (
+    <div className="container">
+      <AutoSizer>
+        {({ height, width }) => (
+          <List
+            className="List"
+            height={height}
+            itemCount={1000}
+            itemSize={150}
+            width={width}
+            itemData={moviesList}
+          >
+            {Row}
+          </List>
+        )}
+      </AutoSizer>
+    </div>
+  );
 };
