@@ -43,7 +43,7 @@ export const MovieList = () => {
     fetchMovies().then(res => {
       setMovies(res);
     });
-  });
+  }, []);
 
   const moviesList = movies.slice(0, 5000);
 
